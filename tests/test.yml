@@ -1,0 +1,6 @@
+---
+- name: Install task
+  hosts: localhost
+  remote_user: root
+  roles:
+    - sgaunet.task
