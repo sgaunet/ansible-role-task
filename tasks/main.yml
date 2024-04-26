@@ -1,5 +1,21 @@
 ---
 
+- name: Retrieve latest release information
+  ansible.builtin.uri:
+    url: https://api.github.com/repos/go-task/task/releases/latest
+    return_content: true
+  register: project_info
+  changed_when: false
+  check_mode: false
+
+- name: Override version to setup if latest
+  ansible.builtin.set_fact:
+    task_version: "{{ project_info.content | from_json | json_query('tag_name') | replace('v', '') }}"
+  changed_when: false
+  check_mode: false
+  when:
+    - task_version == "latest"
+
 - name: Get task version
   become: false
   ansible.builtin.shell: 'set -o pipefail && task --version | cut -f3 -d " " | sed "s#^v##g"'

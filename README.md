@@ -12,7 +12,7 @@ None.
 
 Available variables are listed below, along with default values (see `defaults/main.yml`):
 
-    task_version: "3.35.1"
+    task_version: "3.35.1"            # or "latest" (default)
     task_bin_path: "/usr/local/bin"
     task_tmp_directory: "{{ lookup('env', 'TMPDIR') | default('/tmp', true) }}"
     task_os: "linux"
