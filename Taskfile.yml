@@ -25,6 +25,6 @@ tasks:
   test:
     desc: "execute molecule tests"
     cmds:
+      - test -d ~/.ansible/roles/sgaunet.task && rm -rf ~/.ansible/roles/sgaunet.task
       - source venv/bin/activate && molecule destroy
-      - source venv/bin/activate && molecule converge
-      - source venv/bin/activate && molecule converge
+      - source venv/bin/activate && molecule test
